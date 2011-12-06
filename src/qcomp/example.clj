@@ -9,11 +9,10 @@
 (def con0 (fn [_] 0))
 (def con1 (fn [_] 1))
 
-(defn deutsch [f] (compgate (qgate h h)
-                            (qgate (ufn f))
-                            (qgate h id)
-                            ))
 
-(defn run-deutsch [f] (run 0 1 (deutsch f)))
+(defn deutsch [f]
+  (let [ ufnres ((qgate (ufn f) 2) (h (to-qbit 0)) (h (to-qbit 1)))]
+    [(h (first ufnres)) (second ufnres)]))
+
 
   
