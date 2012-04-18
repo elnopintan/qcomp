@@ -60,3 +60,6 @@
   (gate (kronecker
                (to-qbit x)
                (to-qbit y))))
+
+(defn get-qbit [pos qbit]
+  (let [probs (map #(vector %1 %2) (range) (sq qbit) )]))
