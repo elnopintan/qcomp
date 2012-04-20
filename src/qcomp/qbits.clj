@@ -63,3 +63,9 @@
 
 (defn get-qbit [pos qbit]
   (let [probs (map #(vector %1 %2) (range) (sq qbit) )]))
+
+(defn read-qbit [pos q]
+  (let [size (count q)
+        pos (.intValue (- (- (log2 size) 1) pos))]
+    (map (fn [[k v]] [k (apply + (map second v))])
+         (group-by (fn [[p _]] (bit-test p pos)) (map vector (range) (sq q))))))
